@@ -6,13 +6,13 @@ RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 ENV GERRIT_HOME /var/gerrit
 ENV GERRIT_SITE ${GERRIT_HOME}/review_site
 ENV GERRIT_WAR ${GERRIT_HOME}/gerrit.war
-ENV GERRIT_VERSION 2.10.2
+ENV GERRIT_VERSION 2.10.4
 ENV GERRIT_USER gerrit2
 
 RUN useradd -m -d "$GERRIT_HOME" -u 1000 -U  -s /bin/bash $GERRIT_USER
 
 #Download gerrit.war
-RUN curl -L https://github.com/davido/gerrit-oauth-provider/releases/download/v0.2/gerrit-2.10.2-18-gc6c5e0b.war -o $GERRIT_WAR
+RUN curl -L https://gerrit-releases.storage.googleapis.com/gerrit-${GERRIT_VERSION}.war -o $GERRIT_WAR
 #only for local test
 #COPY gerrit-${GERRIT_VERSION}.war $GERRIT_WAR
 
